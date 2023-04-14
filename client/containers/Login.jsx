@@ -1,10 +1,10 @@
 import { Formik } from 'formik'
 import React from 'react'
-import { KeyboardAvoidingView, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import FormikTextInput from "../components/FormComponents/FormikTextInput"
-import { SafeAreaView } from 'react-native'
-import { KeyboardAwareView } from 'react-native-keyboard-aware-view'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { useUserContext } from '../context/UserContext'
+import { useNavigate } from 'react-router-native'
 
 const initialValues = {
   email: "",
@@ -12,13 +12,23 @@ const initialValues = {
 }
 
 export default function Login() {
+
+  const {checkLogin} = useUserContext();
+  const navigate = useNavigate();
+
   return (
     <View style={styles.container}>
             <View style={styles.header_contain}>
         <Text style={styles.header_text1}>Good to see you</Text>
         <Text style={styles.header_text2}>Again!</Text>
       </View>
-        <Formik onSubmit={values => console.log(values)} initialValues={initialValues}>
+        <Formik onSubmit={
+          async(values) => {
+            if(await checkLogin(values)){
+            navigate("/");
+            }
+          }}
+          initialValues={initialValues}>
           {
             ({handleChange, handleSubmit, handleBlur, values}) => {
               return(
