@@ -5,16 +5,19 @@ import Welcome from './components/Welcome'
 import AppBar from './components/AppBar'
 import Login from './containers/Login'
 import Singup from './containers/Singup'
+import { UserContextProvider } from './context/UserContext'
 
 export default function Main() {
   return (
     <View style={style.container}>
-        <AppBar></AppBar>
+      <UserContextProvider>
+      <AppBar></AppBar>
         <Routes>
          <Route path="/" element={<Welcome></Welcome>}></Route>
          <Route path="/login" element={<Login></Login>}></Route>
          <Route path="/singup" element={<Singup></Singup>}></Route>
         </Routes>
+      </UserContextProvider>
     </View>
   )
 }

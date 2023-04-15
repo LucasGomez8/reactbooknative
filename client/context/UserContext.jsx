@@ -8,14 +8,14 @@ const UserContext = createContext();
 export const useUserContext = () => {
     const con = useContext(UserContext);
 
-    if(!con){
+    if (!con) {
         throw new Error('useUser must be used within a UserContextProvider');
     }
 
     return con;
 }
 
-export const UserContextProvider = ({children}) => {
+export const UserContextProvider = ({ children }) => {
 
     const initialState = {
         isLogin: false,
@@ -23,23 +23,20 @@ export const UserContextProvider = ({children}) => {
     }
     const [state, dispatch] = useReducer(UseReducer, initialState);
 
-    const checkLogin =  async (values) => {
-        const response = await axios.post("http://localhost:4000/users/api/login/", values)
-        .then( res => {
-            console.log("en el then:", res);
-            return res.data;
-        })
-        .catch( error => {
-            console.log(error.message);
-        })
-        console.log("response: ", response);
-
-        if(response.data.length > 0){
-            dispatch({type: "CHECKLOGIN", payload: true})
-            dispatch({type: "CHECKLOGIN", payload: response.data});
+    const checkLogin = async (values) => {
+        console.log('Checking');
+        try {
+            const response = await axios.get(`http://192.168.0.58:4000/users/api/login/${values.email}/${values.password}`);
+            console.log("response: ", response);
+            if (response && response.data && response.data.length > 0) {
+                dispatch({ type: "CHECKLOGIN", payload: true });
+                dispatch({ type: "CHECKLOGIN", payload: response.data });
+            }
+            return true;
+        } catch (error) {
+            console.log(error.message, error.stack)
         }
-
-        return true;
+        
     }
 
     return (

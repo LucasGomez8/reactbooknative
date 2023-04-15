@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { Link } from 'react-router-native'
 import { useUserContext } from '../context/UserContext'
@@ -7,7 +7,7 @@ import Home from '../containers/Home';
 export default function Welcome() {
 
     const {isLogin} = useUserContext();
-
+    
 
     if(!isLogin) {
         return (
@@ -26,7 +26,9 @@ export default function Welcome() {
         )
     }
     else{
-        <Home></Home>
+        return(
+            <Home></Home>
+        )
     }
 
 }

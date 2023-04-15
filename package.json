@@ -31,7 +31,9 @@
     "react-router-native": "^6.10.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.4"
+    "@babel/core": "^7.21.4",
+    "metro": "^0.76.2",
+    "metro-core": "^0.76.2"
   },
   "private": true
 }
