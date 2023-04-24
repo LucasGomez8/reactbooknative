@@ -12,7 +12,7 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const checkLogin = async (req, res) => {
-  const { email, password } = req.params;
+  const { email, password } = req.body;
   console.log(email, password);
   try {
     const [result] = await pool.query(

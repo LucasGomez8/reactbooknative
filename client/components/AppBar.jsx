@@ -3,21 +3,38 @@ import { View, StyleSheet, Text, Image } from 'react-native'
 import Constants from "expo-constants"
 import AppbarTab from './AppbarComponents/AppbarTab'
 import { Link } from 'react-router-native'
+import { useUserContext } from '../context/UserContext'
 
 export default function AppBar() {
-  return (
-    <View style={style.appbar_container}>
-        <View>
+    const { isLogin } = useUserContext();
+    
+    if(!isLogin){
+        return (
+        <View style={style.appbar_container}>
+            <View>
+                <Link to="/" underlayColor={"transparent"}>
+                    <Text style={style.appbar_logotext}>ReactBook</Text>
+                </Link>
+            </View>
+            <View style={style.appbar_menu}>
+                <AppbarTab to="/login">Log In</AppbarTab>
+                <AppbarTab to="/singup">Sign Up</AppbarTab>
+            </View>
+        </View>
+        )
+    }
+    else{
+        return(
+            <View style={style.appbar_container}>
             <Link to="/" underlayColor={"transparent"}>
                 <Text style={style.appbar_logotext}>ReactBook</Text>
             </Link>
         </View>
-        <View style={style.appbar_menu}>
-            <AppbarTab to="/login">Log In</AppbarTab>
-            <AppbarTab to="/singup">Sign Up</AppbarTab>
-        </View>
-    </View>
-  )
+        )
+
+    }
+    
+
 }
 
 const style=StyleSheet.create({
