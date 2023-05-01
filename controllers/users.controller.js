@@ -16,7 +16,8 @@ export const checkLogin = async (req, res) => {
   console.log(email, password);
   try {
     const [result] = await pool.query(
-      "Select * from users where user_email = ? and user_password = ?",
+      `select u.*, count(pxu.user_id) as num_postings from users u inner join post_x_users pxu on pxu.user_id = u.user_id where u.user_email = ? and u.user_password = ?
+      group by u.user_id, u.user_firstname, u.user_lastname, u.user_email, u.user_password, u.user_image_photo`,
       [email, password]
     );
     console.log("result from checklogin:", result);

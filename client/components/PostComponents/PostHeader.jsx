@@ -7,7 +7,7 @@ export default function PostHeader(props) {
 
     return (
         <View style={style.header_container}>
-            <Image style={style.image_header} source={{uri: `${API_LOCAL}/images/${props.user_image_photo}`}}></Image>
+            <Image style={style.image_header} source={{uri: `${process.env.API_LOCAL}/images/${props.user_image_photo}`}}></Image>
             <Text style={style.text_header}>{props.user_firstname + ' ' + props.user_lastname}</Text>
         </View>
     )
