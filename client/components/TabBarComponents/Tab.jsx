@@ -15,7 +15,7 @@ export default function Tab({to, icon, title, edit, image}) {
         <TouchableOpacity style={styles.tab_touchable} onPress={() => ng(to)}>
             {
                 edit ?
-                    <Image style={styles.tab_image} source={{uri: `${process.env.API_LOCAL}/images/${image}`}}></Image>
+                    <Image style={active ? styles.image_active : styles.tab_image} source={{uri: `${process.env.API_LOCAL}/images/${image}`}}></Image>
                 :
                 <>
                     <Icon name={icon} color={active ? '#1877F2' : 'white'} size={20}></Icon>
@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     tab_image: {
-        width:35,
-        height:35,
+        width:40,
+        height:40,
         borderRadius: 20,
     },
     tab_color: {
@@ -49,5 +49,12 @@ const styles = StyleSheet.create({
     },
     active:{
         color: '#1877F2'
+    },
+    image_active: {
+        borderColor: '#1877F2',
+        width: 40, 
+        height: 40,
+        borderRadius: 20,
+        borderWidth: 2
     }
 })

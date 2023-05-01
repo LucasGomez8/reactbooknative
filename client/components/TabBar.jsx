@@ -25,9 +25,7 @@ export default function TabBar() {
 
   return (
     <>
-    {
-      console.log(userData.img)
-    }
+
     <View style={style.tab_container}>  
       <Tab to="/" icon="home" title="Home"></Tab>
       <Tab to="/follow" icon="users" title="Follow people"></Tab>

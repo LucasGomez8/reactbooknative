@@ -11,4 +11,12 @@ rt.get(`/images/:imgName`, (req, res) => {
     res.sendFile(imgPath);
 });
 
+rt.get(`/images/ports/:ports`, (req, res) => {
+    
+    const {ports} = req.params;
+
+    const portPath = path.join(__dirname, '..', 'public', 'assets', 'images', 'ports', ports);
+    res.sendFile(portPath);
+})
+
 export default rt;
