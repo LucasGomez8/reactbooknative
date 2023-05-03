@@ -3,7 +3,7 @@ import { FlatList, View, Text } from 'react-native'
 import GetAllPosts from '../../../hooks/GetAllPosts'
 import Post from './Post';
 
-export default function PostList() {
+export default function PostList({typeOfPost}) {
 
   const { allPost } = GetAllPosts();
 

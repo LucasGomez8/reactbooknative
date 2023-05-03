@@ -40,9 +40,12 @@ export const UserContextProvider = ({ children }) => {
         
     }
 
-    const getPosts = async() => {
+    const getPosts = async(typePost) => {
         try {
-            const response = await axios.post(`${process.env.API_LOCAL}/posts/api/getall/`);
+            let response;
+            if(!typePost){
+                 response = await axios.post(`${process.env.API_LOCAL}/posts/api/getall/`);
+            }
 
             if(response && response.data && response.data.length > 0){
                 dispatch({type: "ALLPOSTS", payload: response.data});

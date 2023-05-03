@@ -7,7 +7,7 @@ import { StyleSheet } from 'react-native'
 export default function Home() {
   return (
     <View style={style.home_container}>
-        <PostList></PostList>
+        <PostList typeOfPost="home"></PostList>
     </View>
   )
 }

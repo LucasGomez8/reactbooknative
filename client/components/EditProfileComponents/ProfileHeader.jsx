@@ -13,10 +13,14 @@ export default function ProfileHeader({name, lastname, img, port, numofposts}) {
                     <Text style={styles.pheader_text}>{name}</Text>
                     <Text style={styles.pheader_text}>{lastname}</Text>
                 </View>
-                <View style={styles.pheader_text_stadistics}>
-                    <View style={styles.pheader_text_stadistics_column}>
+                <View style={styles.pheader_text_stadistics_container}>
+                    <View style={styles.pheadeR_text_stadistics_container_column}>
                         <Text style={styles.pheader_stadistics_text}>Posts</Text>
                         <Text style={styles.pheader_stadistics_text}>{numofposts}</Text>
+                    </View>
+                    <View style={styles.pheadeR_text_stadistics_container_column}>
+                        <Text style={styles.pheader_stadistics_text}>Stars</Text>
+                        <Text style={styles.pheader_stadistics_text}>?</Text>
                     </View>
                 </View>
             </View>
@@ -54,10 +58,12 @@ const styles = StyleSheet.create({
     pheader_text_info:{
         flexDirection: 'row'
     },
-    pheader_text_stadistics:{
-      flexDirection: 'column',  
+    pheader_text_stadistics_container:{
+      flexDirection: 'row', 
+      justifyContent: 'space-between',
+      widt: 'auto' 
     },
-    pheader_text_stadistics_column:{
+    pheadeR_text_stadistics_container_column:{
         flexDirection: 'column',
         marginTop: 20
     },
