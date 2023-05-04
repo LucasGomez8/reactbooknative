@@ -2,12 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useUserContext } from '../client/context/UserContext';
 
 
-export default GettAllPosts = () => {
+export default GettAllPosts = (id) => {
 
     const {getPosts, allPost} = useUserContext();
 
     useEffect( () => {
-        getPosts();
+        if(id){
+            getPosts();
+        }
+        else{
+            getPosts({"id": id});
+        }
     }, [])
 
 
