@@ -16,7 +16,7 @@ export const checkLogin = async (req, res) => {
   console.log(email, password);
   try {
     const [result] = await pool.query(
-      `select u.*, count(pxu.user_id) as num_postings from users u inner join post_x_users pxu on pxu.user_id = u.user_id where u.user_email = ? and u.user_password = ?
+      `select u.*, count(pxu.user_id) as num_postings from users u inner join post_x_users pxu on pxu.user_id = u.user_id where u.user_email like ? and u.user_password like ?
       group by u.user_id, u.user_firstname, u.user_lastname, u.user_email, u.user_password, u.user_image_photo`,
       [email, password]
     );
@@ -27,3 +27,13 @@ export const checkLogin = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const getUserToFollow = async(req, res) => {
+  const { id } = req.body;
+  try {
+    const [result] = await pool.query(`call return_not_follows(?)`, [id]);
+    res.send(result);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}

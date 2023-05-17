@@ -6,15 +6,16 @@ export default GettAllPosts = (id) => {
 
     const {getPosts, allPost} = useUserContext();
 
-    useEffect( () => {
-        if(id){
+    if(id != -1){
+        useEffect(() => {
+                getPosts({"id": id});
+        }, [id])
+    }
+    else{
+        useEffect(() => {
             getPosts();
-        }
-        else{
-            getPosts({"id": id});
-        }
-    }, [])
-
+        }, [])
+    }
 
     return { allPost }
 }

@@ -4,7 +4,6 @@ import { API_LOCAL } from '@env'
 
 export default function PostHeader(props) {
 
-
     return (
         <View style={style.header_container}>
             <Image style={style.image_header} source={{uri: `${process.env.API_LOCAL}/images/${props.user_image_photo}`}}></Image>

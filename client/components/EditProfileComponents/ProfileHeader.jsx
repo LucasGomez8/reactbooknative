@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native'
 import { Image, Text, View } from 'react-native'
 
 export default function ProfileHeader({name, lastname, img, port, numofposts}) {
-  return (
+    return (
+
     <View style={styles.pheader_container}>
         <Image style={styles.pheader_port} source={{uri: `${process.env.API_LOCAL}/images/ports/${port}`}}></Image>
         <View style={styles.pheader_content}>

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { View } from 'react-native'
 import ProfileHeader from '../components/EditProfileComponents/ProfileHeader';
 import MyDataEffect from '../../hooks/MyDataEffect';
@@ -10,11 +10,9 @@ export default function EditProfile() {
     const {profileData} = MyDataEffect();
 
     return (
-        <KeyboardAwareScrollView>
-        <View>
-            <ProfileHeader name={profileData.user_firstname} lastname={profileData.user_lastname} img={profileData.user_image_photo} port={profileData.user_image_photo} numofposts={profileData.num_postings} ></ProfileHeader>
-            <ProfileContent id={profileData.user_id}></ProfileContent>
-        </View>
-        </KeyboardAwareScrollView>
+            <View>
+                <ProfileHeader name={profileData.user_firstname} lastname={profileData.user_lastname} img={profileData.user_image_photo} port={profileData.user_image_photo} numofposts={profileData.num_postings} ></ProfileHeader>
+                <ProfileContent id={profileData.user_id}></ProfileContent>
+            </View>
     )
 }

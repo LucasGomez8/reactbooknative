@@ -21,12 +21,12 @@ export const UserContextProvider = ({ children }) => {
     const initialState = {
         isLogin: false,
         userLogin_data: [],
-        allPost: []
+        allPost: [],
+        noFollows: [],
     }
     const [state, dispatch] = useReducer(UseReducer, initialState);
 
     const checkLogin = async (values) => {
-        console.log('Checking');
         try {
             const response = await axios.post(`${process.env.API_LOCAL}/users/api/login/`, values);
             if (response && response.data && response.data.length > 0) {
@@ -58,14 +58,27 @@ export const UserContextProvider = ({ children }) => {
         }
     }
 
+    const getUserToFollow = async(user_follow_id) => {
+        try {
+            const res = await axios.post(`${process.env.API_LOCAL}/users/api/follow/`, user_follow_id);
+            if(res && res.data && res.data.length > 0) {
+                dispatch({type: "NOTFOLLOW", payload: res.data});
+            }
+        } catch (error) {
+            console.log(error.message, error.stack);
+        }
+    }
+
     return (
         <UserContext.Provider
             value={{
                 isLogin: state.isLogin,
                 userLogin_data: state.userLogin_data,
                 allPost: state.allPost,
+                noFollows: state.noFollows,
                 getPosts,
-                checkLogin
+                checkLogin,
+                getUserToFollow
             }}
         >
             {children}

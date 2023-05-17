@@ -5,7 +5,7 @@ import Post from './Post';
 
 export default function PostList() {
 
-  const { allPost } = GetAllPosts();
+  const { allPost } = GetAllPosts(-1);
 
   return (
       <FlatList

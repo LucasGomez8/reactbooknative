@@ -2,6 +2,7 @@
 const CHECKLOGIN = "CHECKLOGIN";
 const SETSESSIONID = "SETSESSIONID";
 const ALLPOSTS = "ALLPOSTS";
+const NOTFOLLOW = "NOTFOLLOW";
 
 
 
@@ -24,6 +25,11 @@ export default function UseReducer(state, action) {
         return {
             ...state,
             allPost: payload
+        }
+    case NOTFOLLOW:
+        return {
+            ...state,
+            noFollows: payload
         }
  }
 }
