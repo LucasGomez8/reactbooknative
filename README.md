@@ -4,11 +4,11 @@ This is a test App what im doing for funny, just to practice and entertainment
 
 ## Technologies
 This app uses:
-*React Native Expo
-*Node.JS
-*MySql
-*Express
-*Axios
+* React Native Expo
+* Node.JS
+* MySql
+* Express
+* Axios
 
 # Get Started
 1. Clone the repository to a local directory, then realize command npm i to install al the packages
